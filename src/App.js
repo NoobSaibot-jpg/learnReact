@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import Card from './components/card/card';
+import Nav from './components/nav/nav';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './main.scss';
+
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      tittleLang: 'Timofey Manko',
+      subtitleLang: 'Fron-end developer'
+  }
+}
+
+setLang = (e)=>{
+  if (e.target.classList.value === 'rus'){
+    this.setState({
+      tittleLang: 'Тимофей Манько',
+      subtitleLang: 'Fron-end разработчик'
+    })
+  }
+  else {
+    this.setState({
+      tittleLang: 'Timofey Manko',
+      subtitleLang: 'Fron-end developer'})
+    }
+}
+
+
+
+  
+
+  render() {
+    const{tittleLang, subtitleLang}= this.state
+    return (
+      
+      <>
+        <Nav/>
+        <Card title={tittleLang} subtitle={subtitleLang}/>
+        {/* <Lang onClick = {this.setLang}/> */}
+        <div className="lang" onClick = {this.setLang}>
+          <span className = 'rus'>rus</span>
+          <span className = 'eng'>eng</span>
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
